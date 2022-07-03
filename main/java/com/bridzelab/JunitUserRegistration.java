@@ -24,10 +24,7 @@ public class JunitUserRegistration {
     }
 
     public boolean validEmailsValidation(String email) {
-        return Pattern.matches("[-a-z.+_\\d]{3,}@[a-z\\d]*.[a-z]{2,}", email);
+        return Pattern.matches("[a-z\\d.+_-]{3,}@[a-z]{3,}.[a-z]{2,}", email);
     }
 
-    public boolean inValidEmailValidation(String email) {
-        return Pattern.matches("[a-z\\d]{3,}@[a-z]{4,}.[a-z]{3,}.[a-z]{2,}", email);
-    }
 }
