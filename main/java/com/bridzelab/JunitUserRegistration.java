@@ -1,8 +1,10 @@
 package com.bridzelab;
 
 import java.util.regex.Pattern;
-
-
+@FunctionalInterface
+interface LambdaOperation{
+    String validate(String regex,String input);
+}
 public class JunitUserRegistration {
     public boolean firstNameValidation(String firstName) throws InvalidInputExceptionError {
         if (Pattern.matches("[A-Z][a-z]{2,}", firstName))
@@ -39,5 +41,34 @@ public class JunitUserRegistration {
             return true;
         else
             throw new InvalidInputExceptionError("You Enter invalid Password");
+    }
+
+    public static void main(String[] args) {
+        //FirstName validation
+        LambdaOperation firstName = (regex, input) -> {
+            return "First Name Validation is : " + Pattern.matches(regex, input);
+        };
+        System.out.println(firstName.validate("[A-Z][a-z]{2,}", "Srinivas"));
+        // LastName validation
+        LambdaOperation lastName = (regex, input) -> {
+            return "Last name validation is : " + Pattern.matches(regex, input);
+        };
+        System.out.println(lastName.validate("[A-Z][a-z]{2,}", "Avilionda"));
+        // Email validation
+        LambdaOperation email = (regex, input) -> {
+            return "Email validation is : " + Pattern.matches(regex, input);
+        };
+        System.out.println(email.validate("^[a-z\\d\\-]+(\\.[\\w+-]+)*@\\w+(\\.\\w+)?(?=(\\.[A-Za-z_]{2,3}$|\\.[a-zA-Z]{2,3}$)).*$", "srinivas-123@gmail.com.in"));
+        // Phone number validation
+        LambdaOperation phoneNumber = (regex, input) -> {
+            return "Phone number validation is : " + Pattern.matches(regex, input);
+        };
+        System.out.println(phoneNumber.validate("[+]91 [6789]\\d{9}", "+91 8919584625"));
+        //password validation
+        LambdaOperation password = (regex, input) -> {
+            return "Password  validation is : " + Pattern.matches(regex, input);
+        };
+        System.out.println(password.validate("(?=.*?[A-Z])(?=.*?\\d)(?=.*?[!@#$%^&*_()+-])[A-Za-z\\d!@#$%^&()*+_-]{8,}", "Srinivas#22"));
+
     }
 }
