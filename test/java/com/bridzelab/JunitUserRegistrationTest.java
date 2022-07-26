@@ -22,7 +22,7 @@ public class JunitUserRegistrationTest {
 
     @Test
     public void positiveLastNameValidationTest() throws InvalidInputExceptionError {
-        Assert.assertTrue(userRegistration.lastNameValidation("avi"));
+        Assert.assertTrue(userRegistration.lastNameValidation("Aviligonda"));
     }
 
     @Test
